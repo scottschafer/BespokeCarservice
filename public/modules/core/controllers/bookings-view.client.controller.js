@@ -1,16 +1,35 @@
 'use strict';
 
-angular.module('core').controller('BookingsViewController', ['$scope', '$state', 'OfferingsService',
-	function ($scope, $state, OfferingsService) {
+angular.module('core').controller('BookingsViewController', ['$scope', '$state', '$cookieStore', 'OfferingsService',
+	function ($scope, $state, $cookieStore, OfferingsService) {
 
-		$scope.cart = {};
+		// get or initialize the cart and date filter from cookies
+		$scope.cart = $cookieStore.get('cart');
+		if (!$scope.cart) {
+			$scope.cart = {};
+		}
 
-		$scope.offerings = OfferingsService.updateOfferings();
+		$scope.datefilter = $cookieStore.get('datefilter');
+		if (!$scope.datefilter) {
+			$scope.cart = {};
+			$scope.datefilter = {
+				startDate: new Date(),
+				endDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)
+			};
+		}
 
-		$scope.datefilter = {
-			startDate: new Date(),
-			endDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)
-		};
+		// save the cart and date filter to cookies as they change
+		$scope.$watch('cart', function () {
+			$cookieStore.put('cart', $scope.cart);
+		}, true);
+
+		$scope.$watch('datefilter', function () {
+			$cookieStore.put('datefilter', $scope.datefilter);
+
+			// retrieve the offerings
+			$scope.offerings = OfferingsService.updateOfferings($scope.datefilter);
+		}, true);
+
 
 		$scope.go = function (route) {
 			$state.go(route);
@@ -43,27 +62,5 @@ angular.module('core').controller('BookingsViewController', ['$scope', '$state',
 				tab.active = $scope.active(tab.route);
 			});
 		});
-
-		/*
-     $urlRouterProvider.when('', '/PageTab');
-
-     $stateProvider
-        .state('PageTab', {
-            url: '/PageTab',
-            templateUrl: 'PageTab.html'
-        })
-        .state('PageTab.Page1', {
-            url:'/Page1',
-            templateUrl: 'Page-1.html'
-        })
-        .state('PageTab.Page2', {
-            url:'/Page2',
-            templateUrl: 'Page-2.html'
-        })
-        .state('PageTab.Page3', {
-            url:'/Page3',
-            templateUrl: 'Page3.html'
-        });
-				*/
 	}
 ]);
