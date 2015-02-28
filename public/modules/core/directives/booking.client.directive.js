@@ -22,6 +22,9 @@ angular.module('core').directive('booking', [
 				scope.onRemoveFromCart = function (id) {
 					if (scope.cart.hasOwnProperty(id)) {
 						--scope.cart[id];
+						if (scope.cart[id] == 0) {
+							delete scope.cart[id];
+						}
 					}
 				};
 
