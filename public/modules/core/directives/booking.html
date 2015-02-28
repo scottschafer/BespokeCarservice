@@ -39,8 +39,12 @@
 			<img src={{offering.image}}></img>
 		</div>
 		<div>
-			<button data-ng-click="onAddToCart(offeringId)">+</button>
-			<button data-ng-click="onRemoveFromCart(offeringId)" data-ng-disabled="!isInCart(offeringId)">-</button>
+			<button class="btn btn-primary" data-ng-click="onAddToCart(offeringId)">
+				<span class="glyphicon glyphicon-plus"></span> Add to cart
+			</button>
+			<button class="btn btn-primary" data-ng-click="onRemoveFromCart(offeringId)" data-ng-show="isInCart(offeringId)">
+				<span class="glyphicon glyphicon-minus"></span> Remove from cart
+			</button>
 			<span data-ng-show="isInCart(offeringId)">
 				Quantity: {{cart[offeringId]}}
 			</span>

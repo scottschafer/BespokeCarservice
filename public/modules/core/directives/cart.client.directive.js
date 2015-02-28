@@ -26,6 +26,9 @@ angular.module('core').directive('cart', ['OfferingsService',
 					return true;
 				};
 
+				scope.onCheckout = function () {
+					window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+				}
 			}
 		};
 	}

@@ -5,8 +5,10 @@
 		<div class="col-md-6">
 			<form class="form-horizontal">
 				<div class="form-group">
-					<label for="daterange" class="control-label">Filter offerings by date range:</label>
-					<input date-range-picker id="daterange" class="form-control date-picker" type="text" name="date" ng-model="datefilter" required/>
+					<div style="margin:10px">
+						<label for="daterange" class="control-label">See availability for these dates:</label>
+						<input date-range-picker id="daterange" class="date-picker" type="text" name="date" ng-model="datefilter" required/>
+					</div>
 				</div>
 			</form>
 		</div>
