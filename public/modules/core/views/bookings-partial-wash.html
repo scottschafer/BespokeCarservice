@@ -1,0 +1,3 @@
+<div data-ng-repeat="(offeringId,offering) in (offerings | ofilter:'wash':datefilter)">
+	<booking data-offering="offering" data-offering-id="{{offeringId}}" data-cart="cart"></booking>
+</div>
