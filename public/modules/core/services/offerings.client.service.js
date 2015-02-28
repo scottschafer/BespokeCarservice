@@ -93,7 +93,7 @@ angular.module('core').factory('OfferingsService', ['$q',
 			// go fifty dates out
 			for (var i = 0; i < 50; i++) {
 				for (var j = 0; j < arMockOfferings.length; j++) {
-					var oID = "O_" + i + "_" + j;
+					var oID = 'O_' + i + '_' + j;
 					var offering = $.extend({}, arMockOfferings[j]);
 					offering.date = new Date(date);
 					offering.price += additionalPrice;
