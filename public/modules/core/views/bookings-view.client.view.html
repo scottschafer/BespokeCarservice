@@ -6,7 +6,7 @@
 			<form class="form-horizontal">
 				<div class="form-group">
 					<div style="margin:10px">
-						<label for="daterange" class="control-label">See availability for these dates:</label>
+						<label id="daterangelabel" for="daterange" class="control-label">Check availability: </label>
 						<input date-range-picker id="daterange" class="date-picker" type="text" name="date" ng-model="datefilter" required/>
 					</div>
 				</div>
@@ -17,10 +17,12 @@
 		</div>
 	</div>
 
-	<tabset>
-		<tab ng-repeat="t in tabs" heading="{{t.heading}}" select="go(t.route)" active="t.active">
-		</tab>
-	</tabset>
+	<div id="tabset">
+		<tabset>
+			<tab ng-repeat="t in tabs" heading="{{t.heading}}" select="go(t.route)" active="t.active">
+			</tab>
+		</tabset>
+	</div>
 	<div ui-view></div>
 
 </section>

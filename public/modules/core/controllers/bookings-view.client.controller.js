@@ -51,7 +51,7 @@ angular.module('core').controller('BookingsViewController', ['$scope', '$state',
 				active: false
 			},
 			{
-				heading: 'Freshener',
+				heading: 'Air fresheners',
 				route: 'bookings-view.freshener',
 				active: false
 			},
